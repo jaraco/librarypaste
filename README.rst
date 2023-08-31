@@ -1,13 +1,18 @@
 .. image:: https://img.shields.io/pypi/v/librarypaste.svg
-   :target: https://pypi.org/project/librarypaste
+   :target: `PyPI link`_
 
 .. image:: https://img.shields.io/pypi/pyversions/librarypaste.svg
+   :target: `PyPI link`_
 
-.. image:: https://img.shields.io/travis/yougov/librarypaste/master.svg
-   :target: https://travis-ci.org/yougov/librarypaste
+.. _PyPI link: https://pypi.org/project/librarypaste
 
-.. .. image:: https://img.shields.io/appveyor/ci/jaraco/skeleton/master.svg
-..    :target: https://ci.appveyor.com/project/jaraco/skeleton/branch/master
+.. image:: https://github.com/jaraco/librarypaste/workflows/Automated%20Tests/badge.svg
+   :target: https://github.com/jaraco/librarypaste/actions?query=workflow%3A%22Automated+Tests%22
+   :alt: Automated Tests
+
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+   :target: https://github.com/psf/black
+   :alt: Code style: Black
 
 .. .. image:: https://readthedocs.org/projects/skeleton/badge/?version=latest
 ..    :target: https://skeleton.readthedocs.io/en/latest/?badge=latest
