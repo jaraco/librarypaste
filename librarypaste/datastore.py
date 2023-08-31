@@ -20,10 +20,15 @@ def short_key():
     """
     firstlast = list(ascii_letters + digits)
     middle = firstlast + list('-_')
-    return ''.join((
-        choice(firstlast), choice(middle), choice(middle),
-        choice(middle), choice(firstlast),
-    ))
+    return ''.join(
+        (
+            choice(firstlast),
+            choice(middle),
+            choice(middle),
+            choice(middle),
+            choice(firstlast),
+        )
+    )
 
 
 def init_datastore(config):
@@ -108,8 +113,17 @@ class DataStore(metaclass=abc.ABCMeta):
         """
 
     def store(
-            self, type, nick, time, fmt=None, code=None, filename=None,
-            mime=None, data=None, makeshort=True):
+        self,
+        type,
+        nick,
+        time,
+        fmt=None,
+        code=None,
+        filename=None,
+        mime=None,
+        data=None,
+        makeshort=True,
+    ):
         """
         Store code or a file. Returns a tuple containing the uid and shortid
         """
@@ -148,16 +162,20 @@ class DataStore(metaclass=abc.ABCMeta):
                 paste = source_datastore._retrieve(uid)
             except Exception as exc:
                 print(
-                    "{exc.__class__.__name__} occurred retrieving {uid}: {exc}"
-                    .format(exc=exc, uid=uid),
-                    file=sys.stderr)
+                    "{exc.__class__.__name__} occurred retrieving {uid}: {exc}".format(
+                        exc=exc, uid=uid
+                    ),
+                    file=sys.stderr,
+                )
                 continue
             data = paste.pop('data', None)
             try:
                 dest_datastore._store(uid, paste, data)
             except Exception as exc:
                 print(
-                    "{exc.__class__.__name__} occurred storing {uid}: {exc}"
-                    .format(exc=exc, uid=uid),
-                    file=sys.stderr)
+                    "{exc.__class__.__name__} occurred storing {uid}: {exc}".format(
+                        exc=exc, uid=uid
+                    ),
+                    file=sys.stderr,
+                )
                 continue

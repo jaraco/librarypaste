@@ -41,14 +41,8 @@ class JsonDataStore(DataStore):
         return open(path, *args, **kwargs)
 
     def load_key_values(self, filename):
-        lines = (
-            line.strip().partition(' ')
-            for line in self.open(filename)
-        )
-        return {
-            key: value
-            for key, sep, value in lines
-        }
+        lines = (line.strip().partition(' ') for line in self.open(filename))
+        return {key: value for key, sep, value in lines}
 
     def lookup(self, nick):
         return self.load_key_values('log.txt').get(nick)
@@ -78,6 +72,5 @@ class JsonDataStore(DataStore):
         # todo: delete any shortid
 
     def list(self):
-        uid_pattern = re.compile(
-            '^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$')
+        uid_pattern = re.compile('^[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}$')
         return map(uid_pattern.match, os.listdir(self.repo))

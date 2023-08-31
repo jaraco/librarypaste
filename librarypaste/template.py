@@ -11,6 +11,7 @@ def default_extension(loader_func):
         ext = ext or '.html'
         filename = name + ext
         return loader_func(filename)
+
     return add_extension
 
 

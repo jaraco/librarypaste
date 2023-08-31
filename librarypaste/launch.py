@@ -12,14 +12,27 @@ from .pastebin import BASE, Server
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        '-c', '--config', dest="configs",
-        default=[], action="append", help="config file")
+        '-c',
+        '--config',
+        dest="configs",
+        default=[],
+        action="append",
+        help="config file",
+    )
     parser.add_argument(
-        '--yaml-config', dest="configs",
-        type=load_yaml, action="append", help="yaml config")
+        '--yaml-config',
+        dest="configs",
+        type=load_yaml,
+        action="append",
+        help="yaml config",
+    )
     parser.add_argument(
-        '--yaml-config-env', dest="configs",
-        type=load_yaml_env, action="append", help="yaml config")
+        '--yaml-config-env',
+        dest="configs",
+        type=load_yaml_env,
+        action="append",
+        help="yaml config",
+    )
     return parser.parse_args()
 
 
@@ -53,17 +66,20 @@ def main():
         'branding': {
             'name': 'Library',
             'logo source': '/static/librarypaste.png',
-        }
+        },
     }
 
     app = cherrypy.tree.mount(root=None)
     app.merge(app_conf)
     consume(map(app.merge, args.configs))
 
-    app.config.setdefault('datastore', dict(
-        factory='librarypaste.jsonstore:JsonDataStore',
-        repo=os.path.join(os.getcwd(), 'repo'),
-    ))
+    app.config.setdefault(
+        'datastore',
+        dict(
+            factory='librarypaste.jsonstore:JsonDataStore',
+            repo=os.path.join(os.getcwd(), 'repo'),
+        ),
+    )
 
     # after merging all the configs, initialize the datastore.
     app.config['datastore'].update(
