@@ -24,8 +24,8 @@ class LexerSorter(object):
     def __init__(self, favored_languages):
         self.favored_langs = [x.lower().strip() for x in favored_languages]
 
-    def sort_key_lex(self, l):
-        key = l[0].lower()
+    def sort_key_lex(self, ell):
+        key = ell[0].lower()
         for f in self.favored_langs:
             if f in key:
                 return 'aaaaaaaaaaaaaaaaaa' + key
@@ -40,7 +40,7 @@ class Server(object):
         d['title'] = brand_name + " Paste"
 
         s = LexerSorter(cherrypy.request.app.config['lexers']['favorites'])
-        lexers_in = ((l[0], l[1][0]) for l in get_all_lexers())
+        lexers_in = ((ell[0], ell[1][0]) for ell in get_all_lexers())
         d['lexers'] = sorted(lexers_in, key=s.sort_key_lex)
 
         d['pre_nick'] = (
