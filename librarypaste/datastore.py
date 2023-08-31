@@ -6,7 +6,8 @@ import abc
 from string import ascii_letters, digits
 from random import choice
 
-import pkg_resources
+import importlib_metadata as metadata
+
 from jaraco.functools import assign_params
 
 
@@ -47,10 +48,10 @@ def init_datastore(config):
     factory = config.pop('factory')
     if isinstance(factory, str):
         """
-        factory should be a string defined in the pkg_resources.EntryPoint
+        factory should be a string defined in the metadata.EntryPoint
         format.
         """
-        factory = pkg_resources.EntryPoint.parse('x=' + factory).resolve()
+        factory = metadata.EntryPoint(name=None, group=None, value=factory).load()
     return factory(**config)
 
 

@@ -1,6 +1,7 @@
 import os
 import datetime
 import imghdr
+from importlib import metadata
 
 import genshi
 import cherrypy
@@ -10,7 +11,6 @@ from pygments import highlight
 from pygments.util import ClassNotFound
 
 from .template import render
-import librarypaste
 
 
 BASE = os.path.abspath(os.path.dirname(__file__))
@@ -183,7 +183,7 @@ class Server(object):
         d = {}
         add_branding(d)
         d['title'] = 'About Library Paste'
-        d['version'] = librarypaste.__version__
+        d['version'] = metadata.version('librarypaste')
         return render('about', d)
 
 

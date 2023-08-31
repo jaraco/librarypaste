@@ -1,7 +1,6 @@
 import abc
 import datetime
-
-import pkg_resources
+from importlib_resources import files
 
 
 class DataStoreTest(object):
@@ -15,8 +14,7 @@ class DataStoreTest(object):
     )
     code_content = common_content.copy()
     file_content = common_content.copy()
-    code_b = pkg_resources.resource_string('librarypaste', 'pastebin.py')
-    code = code_b.decode('utf-8')
+    code = files('librarypaste').joinpath('pastebin.py').read_text(encoding='utf-8')
     code_content.update(
         type='code',
         fmt='python',
@@ -26,7 +24,7 @@ class DataStoreTest(object):
         type='file',
         mime='image/png',
         filename='librarypaste.png',
-        data=pkg_resources.resource_string('librarypaste', 'static/librarypaste.png'),
+        data=files('librarypaste').joinpath('static/librarypaste.png').read_bytes(),
     )
 
     @abc.abstractproperty
