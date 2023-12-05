@@ -3,7 +3,7 @@
 
 .. image:: https://img.shields.io/pypi/pyversions/librarypaste.svg
 
-.. image:: https://github.com/jaraco/librarypaste/workflows/tests/badge.svg
+.. image:: https://github.com/jaraco/librarypaste/actions/workflows/main.yml/badge.svg
    :target: https://github.com/jaraco/librarypaste/actions?query=workflow%3A%22tests%22
    :alt: tests
 
