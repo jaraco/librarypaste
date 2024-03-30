@@ -15,7 +15,7 @@ from .template import render
 BASE = os.path.abspath(os.path.dirname(__file__))
 
 
-class LexerSorter(object):
+class LexerSorter:
     """
     Takes a list of preferred lexers, and sorts them at the top of the list.
     """
@@ -31,7 +31,7 @@ class LexerSorter(object):
         return key
 
 
-class Server(object):
+class Server:
     def form(self):
         d = {}
         brand_name = cherrypy.request.app.config['branding']['name']
@@ -145,13 +145,12 @@ class Server(object):
         d['pasteid'] = pasteid
         d['plainurl'] = cherrypy.url('plain/' + pasteid)
         d['homeurl'] = cherrypy.url('')
-        d['title'] = 'Paste %s%s%s%s on %s' % (
-            '%s aka ' % paste_data['shortid'] if 'shortid' in paste_data else '',
-            paste_data['uid'] if 'uid' in paste_data else pasteid,
-            ' (%s)' % paste_data['fmt'] if paste_data['fmt'] != '_' else '',
-            ' by %s' % paste_data['nick'] if 'nick' in paste_data else '',
-            paste_data['time'].strftime('%b %d, %H:%M'),
-        )
+        sid = '%s aka ' % paste_data['shortid'] if 'shortid' in paste_data else ''
+        id = paste_data['uid'] if 'uid' in paste_data else pasteid
+        fmt = ' (%s)' % paste_data['fmt'] if paste_data['fmt'] != '_' else ''
+        nick = ' by %s' % paste_data['nick'] if 'nick' in paste_data else ''
+        date = paste_data['time'].strftime('%b %d, %H:%M')
+        d['title'] = f'Paste {sid}{id}{fmt}{nick} on {date}'
         return render('view', d)
 
     @cherrypy.expose

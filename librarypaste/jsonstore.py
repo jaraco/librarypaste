@@ -11,7 +11,7 @@ class JsonDataStore(DataStore):
     """Stores using json encoded into files"""
 
     def __init__(self, repo):
-        super(JsonDataStore, self).__init__()
+        super().__init__()
         self.repo = repo
         if not os.path.exists(repo):
             os.mkdir(repo)
@@ -26,7 +26,7 @@ class JsonDataStore(DataStore):
                 fd.write(data)
         try:
             self.shortids[content['shortid']] = uid
-            sid = '%s %s\n' % (content['shortid'], uid)
+            sid = f'{content["shortid"]} {uid}\n'
             with self.open('shortids.txt', mode='a') as short_id_file:
                 short_id_file.write(sid)
         except KeyError:
@@ -34,7 +34,7 @@ class JsonDataStore(DataStore):
 
     def _storeLog(self, nick, time, uid):
         with self.open('log.txt', mode='a') as f:
-            f.write('%s %s\n' % (nick, uid))
+            f.write(f'{nick} {uid}\n')
 
     def open(self, filename, *args, **kwargs):
         path = os.path.join(self.repo, filename)

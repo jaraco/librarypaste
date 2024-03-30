@@ -4,7 +4,7 @@ import datetime
 from importlib_resources import files
 
 
-class DataStoreTest(object):
+class DataStoreTest:
     common_content = dict(
         nick='nick',
         time=datetime.datetime.now().replace(

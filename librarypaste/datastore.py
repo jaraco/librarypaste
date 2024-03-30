@@ -1,4 +1,3 @@
-from __future__ import print_function
 
 import abc
 import sys
@@ -160,9 +159,7 @@ class DataStore(metaclass=abc.ABCMeta):
                 paste = source_datastore._retrieve(uid)
             except Exception as exc:
                 print(
-                    "{exc.__class__.__name__} occurred retrieving {uid}: {exc}".format(
-                        exc=exc, uid=uid
-                    ),
+                    f"{exc.__class__.__name__} occurred retrieving {uid}: {exc}",
                     file=sys.stderr,
                 )
                 continue
@@ -171,9 +168,7 @@ class DataStore(metaclass=abc.ABCMeta):
                 dest_datastore._store(uid, paste, data)
             except Exception as exc:
                 print(
-                    "{exc.__class__.__name__} occurred storing {uid}: {exc}".format(
-                        exc=exc, uid=uid
-                    ),
+                    f"{exc.__class__.__name__} occurred storing {uid}: {exc}",
                     file=sys.stderr,
                 )
                 continue
