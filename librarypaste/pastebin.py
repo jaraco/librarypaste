@@ -115,7 +115,7 @@ class Server:
             paste_data = ds.retrieve(pasteid)
         except Exception as e:
             print(e)
-            raise cherrypy.NotFound("The paste '%s' could not be found." % pasteid)
+            raise cherrypy.NotFound(f"The paste {pasteid!r} could not be found.") from e
 
         if cherrypy.request.method == 'DELETE':
             ds.delete(pasteid)
