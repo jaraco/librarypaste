@@ -19,7 +19,7 @@ class JsonDataStore(DataStore):
 
     def _store(self, uid, content, data=None):
         content['time'] = time.mktime(content['time'].timetuple())
-        with self.open(uid, mode='w') as fd:
+        with self.open(uid, mode='w', encoding='utf-8') as fd:
             json.dump(content, fd)
         if data:
             with self.open('%s.raw' % uid, mode='wb') as fd:
@@ -27,13 +27,13 @@ class JsonDataStore(DataStore):
         try:
             self.shortids[content['shortid']] = uid
             sid = f'{content["shortid"]} {uid}\n'
-            with self.open('shortids.txt', mode='a') as short_id_file:
+            with self.open('shortids.txt', mode='a', encoding='utf-8') as short_id_file:
                 short_id_file.write(sid)
         except KeyError:
             pass
 
     def _storeLog(self, nick, time, uid):
-        with self.open('log.txt', mode='a') as f:
+        with self.open('log.txt', mode='a', encoding='utf-8') as f:
             f.write(f'{nick} {uid}\n')
 
     def open(self, filename, *args, **kwargs):
@@ -41,7 +41,10 @@ class JsonDataStore(DataStore):
         return open(path, *args, **kwargs)
 
     def load_key_values(self, filename):
-        lines = (line.strip().partition(' ') for line in self.open(filename))
+        lines = (
+            line.strip().partition(' ')
+            for line in self.open(filename, encoding='utf-8')
+        )
         return {key: value for key, sep, value in lines}
 
     def lookup(self, nick):
@@ -53,7 +56,7 @@ class JsonDataStore(DataStore):
         return self.shortids.get(shortid)
 
     def _retrieve(self, uid):
-        with self.open(uid) as f:
+        with self.open(uid, encoding='utf-8') as f:
             val = f.read()
         if not val:
             raise ValueError("empty paste")
