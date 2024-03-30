@@ -4,13 +4,13 @@ from importlib import metadata
 
 import cherrypy
 import genshi
+import puremagic
+from jaraco.context import suppress
+from jaraco.functools import apply
 from pygments import highlight
 from pygments.formatters import HtmlFormatter
 from pygments.lexers import get_all_lexers, get_lexer_by_name
 from pygments.util import ClassNotFound
-from jaraco.context import suppress
-from jaraco.functools import apply
-import puremagic
 
 from .template import render
 
