@@ -24,10 +24,6 @@ env:
   TOX_OVERRIDE: >-
     testenv.pass_env+=GITHUB_*,FORCE_COLOR
 
-  # Ensure tests can sense settings about the environment
-  TOX_OVERRIDE: >-
-    testenv.pass_env+=GITHUB_*
-
 
 jobs:
   test:
