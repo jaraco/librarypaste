@@ -102,10 +102,9 @@ class Server:
             cherrypy.response.cookie['paste-short'] = 0
             cherrypy.response.cookie['paste-short']['expires'] = expires
 
-        if self.as_file(content):
-            raise cherrypy.HTTPRedirect(cherrypy.url('file/' + redirid))
-        else:
-            raise cherrypy.HTTPRedirect(cherrypy.url(redirid))
+        raise cherrypy.HTTPRedirect(
+            cherrypy.url('file/' * self.as_file(content) + redirid)
+        )
 
     @classmethod
     def as_file(cls, content):
