@@ -1,8 +1,8 @@
-import os
 import argparse
+import os
 
-import yaml
 import cherrypy
+import yaml
 from more_itertools.recipes import consume
 
 from . import datastore

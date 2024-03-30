@@ -1,5 +1,5 @@
-import pymongo
 import gridfs
+import pymongo
 
 from .datastore import DataStore
 

@@ -1,7 +1,8 @@
 import pytest
 
-from . import DataStoreTest
 from librarypaste import mongostore
+
+from . import DataStoreTest
 
 
 @pytest.fixture(scope='class', autouse=True)

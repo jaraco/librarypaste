@@ -1,10 +1,9 @@
 import urllib.parse
 
-import requests
 import pmxbot
-from pmxbot.core import command
+import requests
 from jaraco.functools import pass_none
-
+from pmxbot.core import command
 
 _request_friendly = pass_none(tuple)
 """Requests requires that auth is a tuple or None"""

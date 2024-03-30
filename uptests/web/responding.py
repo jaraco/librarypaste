@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-import urllib.request
 import argparse
+import urllib.request
 
 import portend
 

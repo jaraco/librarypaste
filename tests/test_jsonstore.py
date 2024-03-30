@@ -1,8 +1,9 @@
 import os
 import shutil
 
-from . import DataStoreTest
 from librarypaste import jsonstore
+
+from . import DataStoreTest
 
 
 class TestJSONStore(DataStoreTest):

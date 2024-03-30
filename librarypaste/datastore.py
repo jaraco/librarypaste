@@ -1,13 +1,12 @@
 from __future__ import print_function
 
+import abc
 import sys
 import uuid
-import abc
-from string import ascii_letters, digits
 from random import choice
+from string import ascii_letters, digits
 
 import importlib_metadata as metadata
-
 from jaraco.functools import assign_params
 
 

@@ -1,17 +1,16 @@
-import os
 import datetime
 import imghdr
+import os
 from importlib import metadata
 
-import genshi
 import cherrypy
-from pygments.lexers import get_all_lexers, get_lexer_by_name
-from pygments.formatters import HtmlFormatter
+import genshi
 from pygments import highlight
+from pygments.formatters import HtmlFormatter
+from pygments.lexers import get_all_lexers, get_lexer_by_name
 from pygments.util import ClassNotFound
 
 from .template import render
-
 
 BASE = os.path.abspath(os.path.dirname(__file__))
 
