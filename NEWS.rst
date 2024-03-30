@@ -1,3 +1,12 @@
+v3.10.0
+=======
+
+Features
+--------
+
+- Replace deprecated imghdr with puremagic.
+
+
 v3.9.0
 ======
 
