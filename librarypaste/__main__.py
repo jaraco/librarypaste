@@ -1,4 +1,3 @@
-
 import librarypaste.launch
 
 if __name__ == '__main__':
