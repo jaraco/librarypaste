@@ -55,9 +55,6 @@ class DataStore(metaclass=abc.ABCMeta):
     Abstract base class describing a datastore backend.
     """
 
-    def __init__(self, *args, **kwargs):
-        pass
-
     @abc.abstractmethod
     def _store(self, uid, content, data):
         """
