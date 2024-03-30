@@ -1,5 +1,4 @@
 import datetime
-import imghdr
 import os
 from importlib import metadata
 
@@ -9,6 +8,9 @@ from pygments import highlight
 from pygments.formatters import HtmlFormatter
 from pygments.lexers import get_all_lexers, get_lexer_by_name
 from pygments.util import ClassNotFound
+from jaraco.context import suppress
+from jaraco.functools import apply
+import puremagic
 
 from .template import render
 
@@ -76,7 +78,6 @@ class Server:
                 filename=filename,
                 data=data,
             )
-            imagetype = imghdr.what(filename, data)
         else:
             content.update(
                 type='code',
@@ -101,10 +102,23 @@ class Server:
             cherrypy.response.cookie['paste-short'] = 0
             cherrypy.response.cookie['paste-short']['expires'] = expires
 
-        if content['type'] == 'file' and not imagetype:
+        if self.as_file(content):
             raise cherrypy.HTTPRedirect(cherrypy.url('file/' + redirid))
         else:
             raise cherrypy.HTTPRedirect(cherrypy.url(redirid))
+
+    @classmethod
+    def as_file(cls, content):
+        """
+        Should the content be returned as a `file/`?
+        """
+        return content['type'] == 'file' and not cls.is_image(**content)
+
+    @staticmethod
+    @apply(bool)
+    @suppress(puremagic.main.PureError)
+    def is_image(data, filename, **kw):
+        return puremagic.from_string(data, filename)
 
     @cherrypy.expose
     def default(self, pasteid=None):

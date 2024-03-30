@@ -1,0 +1,1 @@
+Replace deprecated imghdr with puremagic.
