@@ -72,6 +72,7 @@ enabler = [
 
 type = [
 	"pytest-mypy",
+	"types-Pygments",
 ]
 
 [project.entry-points]
