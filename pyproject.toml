@@ -39,17 +39,13 @@ Source = "https://github.com/jaraco/librarypaste"
 test = [
 	# upstream
 	"pytest >= 6, != 8.1.*",
-	"pytest-checkdocs >= 2.4",
-	"pytest-cov",
-	"pytest-mypy",
-	"pytest-enabler >= 2.2",
-	"pytest-ruff >= 0.2.1; sys_platform != 'cygwin'",
 
 	# local
 	"pymongo>=3",
 	"jaraco.mongodb>=11.5.1",
 	"types-pyyaml",
 ]
+
 doc = [
 	# upstream
 	"sphinx >= 3.5",
@@ -59,6 +55,23 @@ doc = [
 	"sphinx-lint",
 
 	# local
+]
+
+check = [
+	"pytest-checkdocs >= 2.4",
+	"pytest-ruff >= 0.2.1; sys_platform != 'cygwin'",
+]
+
+cover = [
+	"pytest-cov",
+]
+
+enabler = [
+	"pytest-enabler >= 2.2",
+]
+
+type = [
+	"pytest-mypy",
 ]
 
 [project.entry-points]
