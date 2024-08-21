@@ -71,7 +71,10 @@ enabler = [
 ]
 
 type = [
+	# upstream
 	"pytest-mypy",
+
+	# local
 	"types-Pygments",
 ]
 
