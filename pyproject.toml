@@ -43,7 +43,6 @@ test = [
 	# local
 	"pymongo>=3",
 	"jaraco.mongodb>=11.5.1",
-	"types-pyyaml",
 ]
 
 doc = [
@@ -75,6 +74,7 @@ type = [
 	"pytest-mypy",
 
 	# local
+	"types-pyyaml",
 	"types-Pygments",
 ]
 
